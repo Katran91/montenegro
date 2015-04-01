@@ -19,16 +19,24 @@ public class Student implements Serializable{
     @Column(name = "ID")
     @GeneratedValue
     private Integer id;
+
     @Column(name = "FIRST_NAME")
     private String firstName;
+
     @Column(name = "LAST_NAME")
     private String lastName;
+
     @Column(name = "GIVEN_NAME")
     private String givenName;
+
     @Column(name = "BIRTH_DATE")
     private Date birthDate;
+
     @Column(name = "KURS")
     private int kurs;
+
+    public Student() {
+    }
 
     public Student(String firstName, String lastName, String givenName, Date birthDate, int kurs) {
         this.firstName = firstName;

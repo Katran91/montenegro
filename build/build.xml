@@ -1,0 +1,26 @@
+<project name="CommonUtils">
+    <property name="tomcat.root"  value="D:/Study/apache-tomcat-7.0.57"/>
+    <property name="project.root"  value="D:/Work/Montenegro"/>
+    <target name="deleteTomcatLogs">
+        <delete includeemptydirs="true">
+            <fileset dir="${tomcat.root}/logs" includes="**/*"/>
+        </delete>
+    </target>
+    <target name="deleteWebapps">
+        <delete includeemptydirs="true">
+            <fileset dir="${tomcat.root}/webapps" includes="**/*"/>
+        </delete>
+    </target>
+
+    <target name="shutdownTomcat">
+        <exec dir="${tomcat.root}/bin" executable="shutdown.bat"/>
+    </target>
+
+    <target name="debugTomcat">
+        <exec dir="${tomcat.root}/bin" executable="debug.bat"/>
+    </target>
+
+    <target name="copyWAR">
+        <copyfile src="${project.root}/target/montenegro-0.1.0.war" dest="${tomcat.root}/webapps/montenegro.war"/>
+    </target>
+</project>

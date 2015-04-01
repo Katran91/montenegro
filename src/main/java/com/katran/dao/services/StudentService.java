@@ -6,9 +6,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Service;
 import org.apache.log4j.Logger;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -26,7 +26,7 @@ public class StudentService {
         logger.debug("Retrieving all students");
 
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("FROM STUDENT");
+        Query query = session.createQuery("from Student");
 
         return query.list();
     }
