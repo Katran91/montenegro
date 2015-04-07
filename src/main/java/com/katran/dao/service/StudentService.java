@@ -1,4 +1,4 @@
-package com.katran.dao.services;
+package com.katran.dao.service;
 
 import com.katran.model.Student;
 import org.hibernate.Query;
