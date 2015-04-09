@@ -15,12 +15,13 @@ public class Kafedra {
     private Integer id;
     @Column(name = "NAME")
     private String name;
-    @Column(name = "INSTITUT")
-    private Integer institut;
+    @ManyToOne
+    @JoinColumn(name = "INSTITUTE_ID")
+    private Institute institute;
 
-    public Kafedra(String name, Integer institut) {
+    public Kafedra(String name, Institute institute) {
         this.name = name;
-        this.institut = institut;
+        this.institute = institute;
     }
 
     public Kafedra() {
@@ -42,12 +43,12 @@ public class Kafedra {
         this.name = name;
     }
 
-    public Integer getInstitut() {
-        return institut;
+    public Institute getInstitute() {
+        return institute;
     }
 
-    public void setInstitut(Integer institut) {
-        this.institut = institut;
+    public void setInstitute(Institute institute) {
+        this.institute = institute;
     }
 }
 

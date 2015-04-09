@@ -1,20 +1,24 @@
 package com.katran.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by astratii on 4/7/2015.
  */
 @Entity
-@Table(name = "INSTITUT")
+@Table(name = "INSTITUTE")
 public class Institute {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "INSTITUTE_ID")
     @GeneratedValue
-    private Integer id;
+    private Integer instituteId;
     @Column(name = "NAME")
     private String name;
+
+    @OneToMany(mappedBy = "institute")
+    private Set<Kafedra> kafedras;
 
     public Institute(String name) {
         this.name = name;
@@ -24,11 +28,11 @@ public class Institute {
     }
 
     public Integer getId() {
-        return id;
+        return instituteId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer instituteId) {
+        this.instituteId = instituteId;
     }
 
     public String getName() {
