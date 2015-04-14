@@ -23,4 +23,8 @@
     <target name="copyWAR">
         <copyfile src="${project.root}/target/montenegro-0.1.0.war" dest="${tomcat.root}/webapps/montenegro.war"/>
     </target>
+
+    <target name="clearTomcat">
+
+    </target>
 </project>
