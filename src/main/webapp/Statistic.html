@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Облік ресурсів</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/main.css/">
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+
+
+    <script type="text/javascript" src="js/main.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="file:./questionary.html">Облік ресурсів</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="file:./questionary.html">Робота з анкетами</a></li>
+                <li><a href="file:./protocol.html">Робота з протоколами</a></li>
+                <li class="active"><a href="file:./statistic.html">Статистика</a></li>
+                >
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2"><h3>Данні по олімпідам за</h3></div>
+        <div class="col-sm-2">
+            <h3><select class="form-control" id="institution_stat">
+                <option>2013</option>
+                <option>2014</option>
+                <option>2015</option>
+            </select></h3>
+        </div>
+        <div class="col-sm-2"><h3>рік</h3></div>
+    </div>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>Інститут</th>
+            <th>Кафедра, що проводила І етап олімпіади</th>
+            <th>Назва олімпіади</th>
+            <th>Категорія олімпіади</th>
+            <th>ПІБ студентів, які приймали участь у ІІ етапі в базовому ВНЗ</th>
+            <th>Навчальний інстиут</th>
+            <th>ПІБ викладача</th>
+            <th>Кафедра, інститут, де працює викладач</th>
+            <th>Бали</th>
+            <th>Місце</th>
+            <th>Результати участі (відповідно до наказу МОНУ</th>
+        </tr>
+        <tr>
+            <th>
+                <input type="text" id="firstname" class="form-control">
+            </th>
+            <th>
+                <input type="text" id="firstname" class="form-control">
+            </th>
+            <th></th>
+            <th></th>
+            <th>
+                <input type="text" id="firstname" class="form-control">
+            </th>
+            <th></th>
+            <th>
+                <input type="text" id="firstname" class="form-control">
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>
+                <input type="text" id="firstname" class="form-control">
+            </th>
+        </tr>
+        <tr>
+            <td>ГМІ</td>
+            <td>Педагогіки та психології професійної освіти</td>
+            <td>Педагогіка</td>
+            <td>дисципліна</td>
+            <td>Гриневич Г.В.</td>
+            <td>ГМІ</td>
+            <td>Кокарєва А.М.</td>
+            <td>Педагогіки та психології професійної освіти ГМІ</td>
+            <td>12</td>
+            <td>1</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>ГМІ</td>
+            <td>Педагогіки та психології професійної освіти</td>
+            <td>Педагогіка</td>
+            <td>дисципліна</td>
+            <td>Осауленко С.Л.</td>
+            <td>ГМІ</td>
+            <td>Кокарєва А.М.</td>
+            <td>Педагогіки та психології професійної освіти ГМІ</td>
+            <td>10</td>
+            <td>2</td>
+            <td>9</td>
+        </tr>
+        <tr>
+            <td>ГМІ</td>
+            <td>Педагогіки та психології професійної освіти</td>
+            <td>Педагогіка</td>
+            <td>дисципліна</td>
+            <td>Іванова П.М.</td>
+            <td>ГМІ</td>
+            <td>Кокарєва А.М.</td>
+            <td>Педагогіки та психології професійної освіти ГМІ</td>
+            <td>7</td>
+            <td>3</td>
+            <td>6</td>
+        </tr>
+    </table>
+
+</div>
+</body>
+</html>

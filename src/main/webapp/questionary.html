@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Облік ресурсів</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/main.css/">
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+
+
+    <script type="text/javascript" src="js/main.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="file:./questionary.html">Облік ресурсів</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="file:./questionary.html">Робота з анкетами</a></li>
+                <li><a href="file:./protocol.html">Робота з протоколами</a></li>
+                <li><a href="file:./statistic.html">Статистика</a></li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container">
+    <h3 class="text-center">АНКЕТА</h3>
+
+    <h3 class="text-center">учасника II етапу Олімпіади</h3>
+
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="surname" class="col-sm-2 control-label">Прізвище</label>
+
+            <div class="col-sm-2">
+                <input type="text" id="surname" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="firstname" class="col-sm-2 control-label">Ім’я</label>
+
+            <div class="col-sm-2">
+                <input type="text" id="firstname" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="thirdname" class="col-sm-2 control-label">По батькові</label>
+
+            <div class="col-sm-2">
+                <input type="text" id="thirdname" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="birthday" class="col-sm-2 control-label">Дата народження</label>
+
+            <div class="col-sm-2">
+                <input type="date" id="birthday" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="institution" class="col-sm-2 control-label">Інститут</label>
+
+            <div class="col-sm-4">
+                <select class="form-control" id="institution">
+                    <option>Гуманітарний інститут</option>
+                    <option>Інститут екологічної безпеки</option>
+                    <option>Аерокосмічний інститут</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="kurs" class="col-sm-2 control-label">Курс</label>
+
+            <div class="col-sm-2">
+                <input type="number" id="kurs" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="category" class="col-sm-2 control-label">Категорія олімпіади</label>
+
+            <div class="col-sm-4">
+                <select class="form-control" id="category">
+                    <option>дисципліна</option>
+                    <option>спеціальність</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="category-name" class="col-sm-2 control-label">Назва категорії</label>
+
+            <div class="col-sm-6">
+                <input type="text" id="category-name" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="rank" class="col-sm-2 control-label">Посів місце</label>
+
+            <div class="col-sm-2">
+                <input type="number" id="rank" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="date" class="col-sm-2 control-label">Дата заповнення</label>
+
+            <div class="col-sm-2">
+                <input type="date" id="date" class="form-control">
+            </div>
+        </div>
+
+
+        <button class="btn btn-primary btn-lg center-block" type="submit" id="Submit">Додат анкету</button>
+    </form>
+</div>
+</body>
+</html>
