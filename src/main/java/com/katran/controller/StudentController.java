@@ -35,8 +35,8 @@ public class StudentController {
     public void addStudent(@RequestParam(value = "name") String name,
                            @RequestParam(value = "date") Date date,
                            @RequestParam(value = "kurs") int kurs){
-        //Student student = new Student(name,name,name,date,kurs);
-        Student student = new Student("vasya","vasya1","vasya2",new Date(),1);
+        Student student = new Student(name,name,name,date,kurs);
+        //Student student = new Student("vasya","vasya1","vasya2",new Date(),1);
         studentService.add(student);
     }
 

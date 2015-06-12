@@ -13,7 +13,7 @@ public class UIController {
         return "redirect:/index.html";
     }
 
-    @RequestMapping(value = "/protocol")
+    @RequestMapping(value = "/prot")
     public String redirectToProtocol(){
         return "redirect:/protocol.html";
     }
