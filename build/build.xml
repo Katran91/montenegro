@@ -25,6 +25,11 @@
     </target>
 
     <target name="clearTomcat">
-
+        <delete includeemptydirs="true">
+            <fileset dir="${tomcat.root}/webapps" includes="**/*"/>
+        </delete>
+        <delete includeemptydirs="true">
+            <fileset dir="${tomcat.root}/logs" includes="**/*"/>
+        </delete>
     </target>
 </project>
