@@ -10,11 +10,13 @@ import javax.persistence.*;
 public class Kafedra {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "KAFEDRA_ID")
     @GeneratedValue
-    private Integer id;
+    private Integer kafedraId;
+
     @Column(name = "NAME")
     private String name;
+
     @ManyToOne
     @JoinColumn(name = "INSTITUTE_ID")
     private Institute institute;
@@ -28,11 +30,11 @@ public class Kafedra {
     }
 
     public Integer getId() {
-        return id;
+        return kafedraId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer kafedraId) {
+        this.kafedraId = kafedraId;
     }
 
     public String getName() {

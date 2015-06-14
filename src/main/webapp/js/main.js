@@ -7,6 +7,7 @@ $(document).ready(function () {
 
             var participant = $("#com_participant").clone();
             participant.attr("id", participant.attr("id") + counter_par);
+            participant.attr("name", participant.attr("name") + counter_par);
             $("#participants").append(participant);
         }
     );

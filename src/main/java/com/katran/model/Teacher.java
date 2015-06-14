@@ -13,6 +13,7 @@ public class Teacher {
     @Column(name = "ID")
     @GeneratedValue
     private Integer id;
+
     @Column(name = "NAME")
     private String name;
 

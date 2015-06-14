@@ -6,13 +6,13 @@ import javax.persistence.*;
  * Created by astratii on 4/7/2015.
  */
 @Entity
-@Table(name = "DYSCYPLINA")
+@Table(name = "DYSCIPLINA")
 public class Dysciplina {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "DYSCIPLINA_ID")
     @GeneratedValue
-    private Integer id;
+    private Integer dysciplinaId;
     @Column(name = "NAME")
     private String name;
 
@@ -24,11 +24,11 @@ public class Dysciplina {
     }
 
     public Integer getId() {
-        return id;
+        return dysciplinaId;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.dysciplinaId = dysciplinaId;
     }
 
     public String getName() {

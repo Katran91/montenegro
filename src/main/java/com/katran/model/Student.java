@@ -16,9 +16,9 @@ public class Student implements Serializable{
     private static final long serialVersionUID = -7501756457273825764L;
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "STUDENT_ID")
     @GeneratedValue
-    private Integer id;
+    private Integer studentId;
 
     @Column(name = "FIRST_NAME")
     private String firstName;
@@ -47,11 +47,11 @@ public class Student implements Serializable{
     }
 
     public Integer getId() {
-        return id;
+        return studentId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer studentId) {
+        this.studentId = studentId;
     }
 
     public String getFirstName() {
