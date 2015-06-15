@@ -11,7 +11,6 @@ public class Kafedra {
 
     @Id
     @Column(name = "KAFEDRA_ID")
-    @GeneratedValue
     private Integer kafedraId;
 
     @Column(name = "NAME")
@@ -21,7 +20,8 @@ public class Kafedra {
     @JoinColumn(name = "INSTITUTE_ID")
     private Institute institute;
 
-    public Kafedra(String name, Institute institute) {
+    public Kafedra(Integer id, String name, Institute institute) {
+        this.kafedraId = id;
         this.name = name;
         this.institute = institute;
     }

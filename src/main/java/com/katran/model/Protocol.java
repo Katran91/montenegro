@@ -2,6 +2,7 @@ package com.katran.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by Katran on 13.06.2015.
@@ -10,6 +11,7 @@ import java.util.Date;
 @Table(name = "PROTOCOL")
 public class Protocol {
     @Id
+    @Column(name = "PROTOCOL_ID")
     @GeneratedValue
     private Integer id;
 
@@ -34,9 +36,8 @@ public class Protocol {
     @JoinColumn(name = "INSTITUTE_ID")
     private Institute institute;
 
-    @ManyToOne
-    @JoinColumn(name = "WINNER_ID")
-    private Winner winner;
+    @OneToMany(cascade=CascadeType.ALL,mappedBy = "protocol")
+    private Set<Winner> winner;
 
 
     public Protocol() {
@@ -98,11 +99,11 @@ public class Protocol {
         this.institute = institute;
     }
 
-    public Winner getWinner() {
+    public Set<Winner> getWinners() {
         return winner;
     }
 
-    public void setWinner(Winner winner) {
+    public void setWinners(Set<Winner> winner) {
         this.winner = winner;
     }
 }

@@ -55,12 +55,12 @@ public class StudentController {
         student = new Student("vasya1","vasya11","vasya12",new Date(),1);
         studentService.add(student);
 
-        dysciplinaService.add(new Dysciplina("Дисципліна"));
-        dysciplinaService.add(new Dysciplina("Спеціальність"));
+        dysciplinaService.add(new Dysciplina(1, "Дисципліна"));
+        dysciplinaService.add(new Dysciplina(2, "Спеціальність"));
 
-        Institute gmi = new Institute("ГМІ");
+        Institute gmi = new Institute(1, "ГМІ", "Гуманітарний інститут");
         instituteService.add(gmi);
 
-        kafedraService.add(new Kafedra("Педагогіки та психології професійної освіти",gmi));
+        kafedraService.add(new Kafedra(1, "Педагогіки та психології професійної освіти",gmi));
     }
 }

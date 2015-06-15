@@ -13,9 +13,8 @@ public class Winner {
     @GeneratedValue
     private Integer winnerId;
 
-    @ManyToOne
-    @JoinColumn(name = "STUDENT_ID")
-    private Student student;
+    @Column(name = "STUDENT")
+    private String student;
 
     @ManyToOne
     @JoinColumn(name = "INSTITUTE_ID")
@@ -27,6 +26,10 @@ public class Winner {
     @ManyToOne
     @JoinColumn(name = "KAFEDRA_ID")
     private Kafedra kafedra;
+
+    @ManyToOne
+    @JoinColumn(name = "PROTOCOL_ID")
+    private Protocol protocol;
 
     @Column(name = "SCORE")
     private Integer score;
@@ -45,11 +48,11 @@ public class Winner {
         this.winnerId = winnerId;
     }
 
-    public Student getStudent() {
+    public String getStudent() {
         return student;
     }
 
-    public void setStudent(Student student) {
+    public void setStudent(String student) {
         this.student = student;
     }
 
@@ -99,5 +102,13 @@ public class Winner {
 
     public void setPositionMONU(Integer positionMONU) {
         this.positionMONU = positionMONU;
+    }
+
+    public Protocol getProtocol() {
+        return protocol;
+    }
+
+    public void setProtocol(Protocol protocol) {
+        this.protocol = protocol;
     }
 }

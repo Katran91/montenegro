@@ -18,20 +18,20 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="file:./questionary.html">Облік ресурсів</a>
+            <a class="navbar-brand" href="./questionary.html">Облік ресурсів</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="file:./questionary.html">Робота з анкетами</a></li>
-                <li class="active"><a href="file:./protocol.html">Робота з протоколами</a></li>
-                <li><a href="file:./statistic.html">Статистика</a></li>>
+                <li><a href="./questionary.html">Робота з анкетами</a></li>
+                <li class="active"><a href="./protocol.html">Робота з протоколами</a></li>
+                <li><a href="./statistic.html">Статистика</a></li>>
             </ul>
         </div>
         <!--/.nav-collapse -->
     </div>
 </nav>
 
-<div class="container" ng-controller="FormController">
+<div class="container" ng-controller="FormController as form">
     <h3 class="text-center">ПРОТОКОЛ ПРОВЕДЕННЯ</h3>
 
     <h3 class="text-center">І етапу Всеукраїнської студентської олімпіади</h3>
@@ -49,8 +49,7 @@
 
             <div class="col-sm-4">
                 <select class="form-control" id="category" name="category" ng-model="protocol.category">
-                    <option value="1">дисципліна</option>
-                    <option value="2">спеціальність</option>
+                    <option ng-repeat="dysciplina in form.dysciplinas" value={{dysciplina.id}}>{{dysciplina.name}}</option>
                 </select>
             </div>
         </div>
@@ -65,19 +64,17 @@
             <label for="kafedra" class="col-sm-2 control-label">Кафедра</label>
 
             <div class="col-sm-4">
-                <select class="form-control" id="kafedra" name="kafedra">
-                    <option value="1">Педагогіки та психології професійної освіти</option>
+                <select class="form-control" id="kafedra" name="kafedra" ng-model="protocol.kafedra">
+                    <option ng-repeat="kafedra in form.kafedras" value={{kafedra.id}}>{{kafedra.name}}</option>
                 </select>
             </div>
         </div>
         <div class="form-group">
             <label for="institut" class="col-sm-2 control-label">Інститут</label>
 
-            <div class="col-sm-4">
-                <select class="form-control" id="institut" name="institut">
-                    <option value="1">Гуманітарний інститут</option>
-                    <option value="2">Інститут екологічної безпеки</option>
-                    <option value="3">Аерокосмічний інститут</option>
+            <div class="col-sm-4" >
+                <select class="form-control" id="institut" name="institut" ng-model="protocol.institut">
+                    <option ng-repeat="institut in form.instituts" value={{institut.id}}>{{institut.name}}</option>
                 </select>
             </div>
         </div>
@@ -85,14 +82,14 @@
             <label for="com_head" class="col-sm-2 control-label">Голова комісії</label>
 
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="com_head" name="com_head">
+                <input type="text" class="form-control" id="com_head" name="com_head" ng-model="protocol.com_head">
             </div>
         </div>
         <div class="form-group row">
             <label for="com_participant" class="col-sm-2 control-label">Члени жюрі:</label>
 
             <div class="col-sm-4" id="participants">
-                <input type="text" class="form-control" id="com_participant" name="com_participant">
+                <input type="text" class="form-control" id="com_participant" name="com_participant" ng-model="protocol.com_participant">
             </div>
             <div class="col-sm-2">
                 <button type="button" id="add_participant" class="btn btn-default">
@@ -109,15 +106,12 @@
                         <label class="col-sm-1 control-label">1</label>
 
                         <div class="col-sm-4">
-                            <select class="form-control" id="institution_stat" name="institution_stat">
-                                <option value="1">Навчальний підрозділ</option>
-                                <option value="2">Гуманітарний інститут</option>
-                                <option value="3">Інститут екологічної безпеки</option>
-                                <option value="4">Аерокосмічний інститут</option>
+                            <select class="form-control" id="institution_stat" name="institution_stat" ng-model="protocol.institution_stat">
+                                <option ng-repeat="institut in form.instituts" value={{institut.id}}>{{institut.name}}</option>
                             </select>
                         </div>
                         <div class="col-sm-4">
-                            <input type="number" class="form-control" id="stat_count" name="stat_count"
+                            <input type="number" class="form-control" id="stat_count" name="stat_count" ng-model="protocol.stat_count"
                                    placeholder="Кількість студентів">
                         </div>
                     </div>
@@ -137,30 +131,24 @@
                         <label class="col-sm-1 control-label">1</label>
 
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" id="student1" name="student1"
+                            <input type="text" class="form-control" id="student1" name="student1" ng-model="protocol.student1"
                                    placeholder="ПІБ студента">
                         </div>
 
                         <div class="col-sm-3">
-                            <select class="form-control" id="s_institution_stat1" name="s_institution_stat1">
-                                <option value="1">Навчальний підрозділ</option>
-                                <option value="2">Гуманітарний інститут</option>
-                                <option value="3">Інститут екологічної безпеки</option>
-                                <option value="4">Аерокосмічний інститут</option>
+                            <select class="form-control" id="s_institution_stat1" name="s_institution_stat1" ng-model="protocol.s_institution_stat1">
+                                <option ng-repeat="institut in form.instituts" value={{institut.id}}>{{institut.name}}</option>
                             </select>
                         </div>
 
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" id="teacher1" name="teacher"
+                            <input type="text" class="form-control" id="teacher1" name="teacher" ng-model="protocol.teacher1"
                                    placeholder="ПІБ викладача">
                         </div>
 
                         <div class="col-sm-3">
-                            <select class="form-control" id="t_institution_stat1" name="t_institution_stat1">
-                                <option value="1">Навчальний підрозділ</option>
-                                <option value="2">Гуманітарний інститут</option>
-                                <option value="3">Інститут екологічної безпеки</option>
-                                <option value="4">Аерокосмічний інститут</option>
+                            <select class="form-control" id="kafedra_stat1" name="kafedra_stat1" ng-model="protocol.kafedra_stat1">
+                                <option ng-repeat="kafedra in form.kafedras" value={{kafedra.id}}>{{kafedra.name}}</option>
                             </select>
                         </div>
                     </div>
@@ -168,30 +156,24 @@
                     <label class="col-sm-1 control-label">2</label>
 
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" id="student2" name="student2"
+                        <input type="text" class="form-control" id="student2" name="student2" ng-model="protocol.student2"
                                placeholder="ПІБ студента">
                     </div>
 
                     <div class="col-sm-3">
-                        <select class="form-control" id="s_institution_stat2" name="s_institution_stat2">
-                            <option value="1">Навчальний підрозділ</option>
-                            <option value="2">Гуманітарний інститут</option>
-                            <option value="3">Інститут екологічної безпеки</option>
-                            <option value="4">Аерокосмічний інститут</option>
+                        <select class="form-control" id="s_institution_stat2" name="s_institution_stat2" ng-model="protocol.s_institution_stat2">
+                            <option ng-repeat="institut in form.instituts" value={{institut.id}}>{{institut.name}}</option>
                         </select>
                     </div>
 
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" id="teacher2" name="teacher2"
+                        <input type="text" class="form-control" id="teacher2" name="teacher2" ng-model="protocol.teacher2"
                                placeholder="ПІБ викладача">
                     </div>
 
                     <div class="col-sm-3">
-                        <select class="form-control" id="t_institution_stat2" name="t_institution_stat2">
-                            <option value="1">Навчальний підрозділ</option>
-                            <option value="2">Гуманітарний інститут</option>
-                            <option value="3">Інститут екологічної безпеки</option>
-                            <option value="4">Аерокосмічний інститут</option>
+                        <select class="form-control" id="kafedra_stat2" name="kafedra_stat2" ng-model="protocol.kafedra_stat2">
+                            <option ng-repeat="kafedra in form.kafedras" value={{kafedra.id}}>{{kafedra.name}}</option>
                         </select>
                     </div>
                 </div>
@@ -199,30 +181,24 @@
                     <label class="col-sm-1 control-label">3</label>
 
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" id="student3" name="student3"
+                        <input type="text" class="form-control" id="student3" name="student3" ng-model="protocol.student3"
                                placeholder="ПІБ студента">
                     </div>
 
                     <div class="col-sm-3">
-                        <select class="form-control" id="s_institution_stat3" name="s_institution_stat3">
-                            <option value="1">Навчальний підрозділ</option>
-                            <option value="2">Гуманітарний інститут</option>
-                            <option value="3">Інститут екологічної безпеки</option>
-                            <option value="4">Аерокосмічний інститут</option>
+                        <select class="form-control" id="s_institution_stat3" name="s_institution_stat3" ng-model="protocol.s_institution_stat3">
+                            <option ng-repeat="institut in form.instituts" value={{institut.id}}>{{institut.name}}</option>
                         </select>
                     </div>
 
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" id="teacher3" name="teacher3"
+                        <input type="text" class="form-control" id="teacher3" name="teacher3" ng-model="protocol.teacher3"
                                placeholder="ПІБ викладача">
                     </div>
 
                     <div class="col-sm-3">
-                        <select class="form-control" id="t_institution_stat3" name="t_institution_stat3">
-                            <option value="1">Навчальний підрозділ</option>
-                            <option value="2">Гуманітарний інститут</option>
-                            <option value="3">Інститут екологічної безпеки</option>
-                            <option value="4">Аерокосмічний інститут</option>
+                        <select class="form-control" id="kafedra_stat3" name="kafedra_stat3" ng-model="protocol.kafedra_stat3">
+                            <option ng-repeat="kafedra in form.kafedras" value={{kafedra.id}}>{{kafedra.name}}</option>
                         </select>
                     </div>
                 </div>

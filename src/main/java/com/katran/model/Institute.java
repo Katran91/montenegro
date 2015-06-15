@@ -12,15 +12,20 @@ public class Institute {
 
     @Id
     @Column(name = "INSTITUTE_ID")
-    @GeneratedValue
     private Integer instituteId;
+
+    @Column(name = "CODE")
+    private String code;
+
     @Column(name = "NAME")
     private String name;
 
     @OneToMany(mappedBy = "institute")
     private Set<Kafedra> kafedras;
 
-    public Institute(String name) {
+    public Institute(Integer id, String code, String name) {
+        this.instituteId = id;
+        this.code = code;
         this.name = name;
     }
 
@@ -41,5 +46,21 @@ public class Institute {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getInstituteId() {
+        return instituteId;
+    }
+
+    public void setInstituteId(Integer instituteId) {
+        this.instituteId = instituteId;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

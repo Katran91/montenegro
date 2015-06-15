@@ -11,12 +11,12 @@ public class Dysciplina {
 
     @Id
     @Column(name = "DYSCIPLINA_ID")
-    @GeneratedValue
     private Integer dysciplinaId;
     @Column(name = "NAME")
     private String name;
 
-    public Dysciplina(String name) {
+    public Dysciplina(Integer id, String name) {
+        this.dysciplinaId = id;
         this.name = name;
     }
 
