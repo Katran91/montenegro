@@ -43,7 +43,8 @@
         </div>
         <div class="col-sm-2"><h3>рік</h3></div>
     </div>
-    <table st-table="rowCollection" class="table table-striped">
+
+    <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
         <thead>
         <tr>
             <th st-sort="institute.code">Інститут</th>
@@ -58,9 +59,33 @@
             <th st-sort="position">Місце</th>
             <th st-sort="positionMONU">Результати участі (відповідно до наказу МОНУ</th>
         </tr>
+        <tr>
+            <th>
+                <input st-search="institute.code" placeholder="інститут..." class="input-sm form-control" type="search"/>
+            </th>
+            <th>
+                <input st-search="kafedra.name" placeholder="кафедра..." class="input-sm form-control" type="search"/>
+            </th>
+            <th></th>
+            <th></th>
+            <th>
+                <input st-search="student_name" placeholder="студент..." class="input-sm form-control" type="search"/>
+            </th>
+            <th></th>
+            <th>
+                <input st-search="teacher" placeholder="викладач..." class="input-sm form-control" type="search"/>
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>
+                <input st-search="positionMONU" placeholder="результат МОНУ" class="input-sm form-control" type="search"/>
+            </th>
+        </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="row in rowCollection">
+        <tr ng-repeat="row in displayedCollection">
+
             <td>{{row.institute.code}}</td>
             <td>{{row.kafedra.name}}</td>
             <td>{{row.dysciplina_name}}</td>

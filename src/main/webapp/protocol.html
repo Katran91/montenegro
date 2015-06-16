@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <title>Облік ресурсів</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="./css/main.css/">
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
 
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/angular.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
-
 
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/protocol.js"></script>
@@ -36,44 +35,46 @@
 
     <h3 class="text-center">І етапу Всеукраїнської студентської олімпіади</h3>
 
-    <form class="form-horizontal">
-        <div class="form-group">
+    <form class="form-horizontal" name="protocolForm">
+        <div class="form-group" ng-class="{ 'has-error':protocolForm.date.$invalid }">
             <label for="date" class="col-sm-2 control-label">від</label>
 
             <div class="col-sm-2">
-                <input type="date" id="date" class="form-control" name="date" ng-model="protocol.date">
+                    <input type="date" id="date" class="form-control" name="date" ng-model="protocol.date" required>
+
             </div>
         </div>
-        <div class="form-group">
+
+        <div class="form-group" ng-class="{ 'has-error':protocolForm.category.$invalid }">
             <label for="category" class="col-sm-2 control-label">Категорія олімпіади</label>
 
             <div class="col-sm-4">
-                <select class="form-control" id="category" name="category" ng-model="protocol.category">
+                <select class="form-control" id="category" name="category" ng-model="protocol.category" required>
                     <option ng-repeat="dysciplina in form.dysciplinas" value={{dysciplina.id}}>{{dysciplina.name}}</option>
                 </select>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{ 'has-error':protocolForm.category_name.$invalid }">
             <label for="category-name" class="col-sm-2 control-label">Назва категорії</label>
 
             <div class="col-sm-6">
-                <input type="text" id="category-name" class="form-control" name="category_name" ng-model="protocol.category_name">
+                <input type="text" id="category-name" class="form-control" name="category_name" ng-model="protocol.category_name" required>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{ 'has-error':protocolForm.kafedra.$invalid }">
             <label for="kafedra" class="col-sm-2 control-label">Кафедра</label>
 
             <div class="col-sm-4">
-                <select class="form-control" id="kafedra" name="kafedra" ng-model="protocol.kafedra">
+                <select class="form-control" id="kafedra" name="kafedra" ng-model="protocol.kafedra" required>
                     <option ng-repeat="kafedra in form.kafedras" value={{kafedra.id}}>{{kafedra.name}}</option>
                 </select>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{ 'has-error':protocolForm.institut.$invalid }">
             <label for="institut" class="col-sm-2 control-label">Інститут</label>
 
             <div class="col-sm-4" >
-                <select class="form-control" id="institut" name="institut" ng-model="protocol.institut">
+                <select class="form-control" id="institut" name="institut" ng-model="protocol.institut" required>
                     <option ng-repeat="institut in form.instituts" value={{institut.id}}>{{institut.name}}</option>
                 </select>
             </div>
@@ -126,53 +127,53 @@
 
         <fieldset>
             <legend>Претендентами на участь у ІІ етапі Олімпіади</legend>
-            <div class="form-group">
-                    <div class="row">
+            <div class="form-group" >
+                <div class="row">
                         <label class="col-sm-1 control-label">1</label>
 
-                        <div class="col-sm-2">
+                        <div class="col-sm-2" ng-class="{ 'has-error':protocolForm.student1.$invalid }">
                             <input type="text" class="form-control" id="student1" name="student1" ng-model="protocol.student1"
-                                   placeholder="ПІБ студента">
+                                   placeholder="ПІБ студента" required>
                         </div>
 
-                        <div class="col-sm-3">
-                            <select class="form-control" id="s_institution_stat1" name="s_institution_stat1" ng-model="protocol.s_institution_stat1">
+                        <div class="col-sm-3" ng-class="{ 'has-error':protocolForm.s_institution_stat1.$invalid }">
+                            <select class="form-control" id="s_institution_stat1" name="s_institution_stat1" ng-model="protocol.s_institution_stat1" required>
                                 <option ng-repeat="institut in form.instituts" value={{institut.id}}>{{institut.name}}</option>
                             </select>
                         </div>
 
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" id="teacher1" name="teacher" ng-model="protocol.teacher1"
-                                   placeholder="ПІБ викладача">
+                        <div class="col-sm-2"  ng-class="{ 'has-error':protocolForm.teacher1.$invalid }">
+                            <input type="text" class="form-control" id="teacher1" name="teacher1" ng-model="protocol.teacher1"
+                                   placeholder="ПІБ викладача" required>
                         </div>
 
-                        <div class="col-sm-3">
-                            <select class="form-control" id="kafedra_stat1" name="kafedra_stat1" ng-model="protocol.kafedra_stat1">
+                        <div class="col-sm-3" ng-class="{ 'has-error':protocolForm.kafedra_stat1.$invalid }">
+                            <select class="form-control" id="kafedra_stat1" name="kafedra_stat1" ng-model="protocol.kafedra_stat1" required>
                                 <option ng-repeat="kafedra in form.kafedras" value={{kafedra.id}}>{{kafedra.name}}</option>
                             </select>
                         </div>
-                    </div>
+                </div>
                 <div class="row">
                     <label class="col-sm-1 control-label">2</label>
 
-                    <div class="col-sm-2">
+                    <div class="col-sm-2" ng-class="{ 'has-error':protocolForm.student2.$invalid }">
                         <input type="text" class="form-control" id="student2" name="student2" ng-model="protocol.student2"
-                               placeholder="ПІБ студента">
+                               placeholder="ПІБ студента" required>
                     </div>
 
-                    <div class="col-sm-3">
-                        <select class="form-control" id="s_institution_stat2" name="s_institution_stat2" ng-model="protocol.s_institution_stat2">
+                    <div class="col-sm-3" ng-class="{ 'has-error':protocolForm.s_institution_stat2.$invalid }">
+                        <select class="form-control" id="s_institution_stat2" name="s_institution_stat2" ng-model="protocol.s_institution_stat2" required>
                             <option ng-repeat="institut in form.instituts" value={{institut.id}}>{{institut.name}}</option>
                         </select>
                     </div>
 
-                    <div class="col-sm-2">
+                    <div class="col-sm-2" ng-class="{ 'has-error':protocolForm.teacher2.$invalid }">
                         <input type="text" class="form-control" id="teacher2" name="teacher2" ng-model="protocol.teacher2"
-                               placeholder="ПІБ викладача">
+                               placeholder="ПІБ викладача" required>
                     </div>
 
-                    <div class="col-sm-3">
-                        <select class="form-control" id="kafedra_stat2" name="kafedra_stat2" ng-model="protocol.kafedra_stat2">
+                    <div class="col-sm-3" ng-class="{ 'has-error':protocolForm.kafedra_stat2.$invalid }">
+                        <select class="form-control" id="kafedra_stat2" name="kafedra_stat2" ng-model="protocol.kafedra_stat2" required>
                             <option ng-repeat="kafedra in form.kafedras" value={{kafedra.id}}>{{kafedra.name}}</option>
                         </select>
                     </div>
@@ -180,24 +181,24 @@
                 <div class="row">
                     <label class="col-sm-1 control-label">3</label>
 
-                    <div class="col-sm-2">
+                    <div class="col-sm-2" ng-class="{ 'has-error':protocolForm.student3.$invalid }">
                         <input type="text" class="form-control" id="student3" name="student3" ng-model="protocol.student3"
-                               placeholder="ПІБ студента">
+                               placeholder="ПІБ студента" required>
                     </div>
 
-                    <div class="col-sm-3">
-                        <select class="form-control" id="s_institution_stat3" name="s_institution_stat3" ng-model="protocol.s_institution_stat3">
+                    <div class="col-sm-3" ng-class="{ 'has-error':protocolForm.s_institution_stat3.$invalid }">
+                        <select class="form-control" id="s_institution_stat3" name="s_institution_stat3" ng-model="protocol.s_institution_stat3" required>
                             <option ng-repeat="institut in form.instituts" value={{institut.id}}>{{institut.name}}</option>
                         </select>
                     </div>
 
-                    <div class="col-sm-2">
+                    <div class="col-sm-2" ng-class="{ 'has-error':protocolForm.teacher3.$invalid }">
                         <input type="text" class="form-control" id="teacher3" name="teacher3" ng-model="protocol.teacher3"
-                               placeholder="ПІБ викладача">
+                               placeholder="ПІБ викладача" required>
                     </div>
 
-                    <div class="col-sm-3">
-                        <select class="form-control" id="kafedra_stat3" name="kafedra_stat3" ng-model="protocol.kafedra_stat3">
+                    <div class="col-sm-3" ng-class="{ 'has-error':protocolForm.kafedra_stat3.$invalid }">
+                        <select class="form-control" id="kafedra_stat3" name="kafedra_stat3" ng-model="protocol.kafedra_stat3" required>
                             <option ng-repeat="kafedra in form.kafedras" value={{kafedra.id}}>{{kafedra.name}}</option>
                         </select>
                     </div>
@@ -206,7 +207,9 @@
         </fieldset>
 
         <div class="center-block">
-            <button class="btn btn-primary btn-lg" type="submit" id="Submit" ng-click="send(protocol)">Додати протокол</button>
+            <button class="btn btn-primary btn-lg" type="submit" id="Submit" ng-click="send(protocol)"
+                    ng-disabled="protocolForm.$invalid">Додати протокол</button>
+
             <button class="btn btn-primary btn-lg" type="reset" id="Reset">Обнулити форму</button>
         </div>
     </form>
