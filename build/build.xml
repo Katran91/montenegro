@@ -1,6 +1,6 @@
 <project name="CommonUtils">
-    <property name="tomcat.root"  value="E:/Work/apache-tomcat-7.0.62"/>
-    <property name="project.root"  value="E:/Work/Montenegro/montenegro"/>
+    <property name="tomcat.root"  value="D:/Study/apache-tomcat-7.0.57"/>
+    <property name="project.root"  value="D:/Work/Montenegro"/>
     <target name="deleteTomcatLogs">
         <delete includeemptydirs="true">
             <fileset dir="${tomcat.root}/logs" includes="**/*"/>

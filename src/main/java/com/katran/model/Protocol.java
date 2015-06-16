@@ -2,6 +2,7 @@ package com.katran.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -13,7 +14,7 @@ public class Protocol {
     @Id
     @Column(name = "PROTOCOL_ID")
     @GeneratedValue
-    private Integer id;
+    private Integer protocol_id;
 
     @Column(name = "NUMBER")
     private Integer number;
@@ -36,19 +37,19 @@ public class Protocol {
     @JoinColumn(name = "INSTITUTE_ID")
     private Institute institute;
 
-    @OneToMany(cascade=CascadeType.ALL,mappedBy = "protocol")
-    private Set<Winner> winner;
+    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL,mappedBy = "protocol")
+    private Set<Winner> winners = new HashSet<Winner>();
 
 
     public Protocol() {
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getProtocol_id() {
+        return protocol_id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setProtocol_id(Integer protocol_id) {
+        this.protocol_id = protocol_id;
     }
 
     public Integer getNumber() {
@@ -100,10 +101,10 @@ public class Protocol {
     }
 
     public Set<Winner> getWinners() {
-        return winner;
+        return winners;
     }
 
-    public void setWinners(Set<Winner> winner) {
-        this.winner = winner;
+    public void setWinners(Set<Winner> winners) {
+        this.winners = winners;
     }
 }

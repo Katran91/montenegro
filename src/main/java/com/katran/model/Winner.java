@@ -1,5 +1,7 @@
 package com.katran.model;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 
 /**
@@ -104,6 +106,7 @@ public class Winner {
         this.positionMONU = positionMONU;
     }
 
+    @JsonIgnore
     public Protocol getProtocol() {
         return protocol;
     }
@@ -111,4 +114,6 @@ public class Winner {
     public void setProtocol(Protocol protocol) {
         this.protocol = protocol;
     }
+
+
 }

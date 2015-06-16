@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="statistic">
 <head lang="en">
     <meta charset="UTF-8">
     <title>Облік ресурсів</title>
@@ -9,7 +9,8 @@
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/angular.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
-
+    <script type="text/javascript" src="js/smart-table.js"></script>
+    <script type="text/javascript" src="js/statistic.js"></script>
 
     <script type="text/javascript" src="js/main.js"></script>
 </head>
@@ -30,7 +31,7 @@
     </div>
 </nav>
 
-<div class="container">
+<div class="container" ng-controller="tableController">
     <div class="row">
         <div class="col-sm-2"><h3>Данні по олімпідам за</h3></div>
         <div class="col-sm-2">
@@ -42,84 +43,38 @@
         </div>
         <div class="col-sm-2"><h3>рік</h3></div>
     </div>
-    <table class="table table-bordered table-hover">
+    <table st-table="rowCollection" class="table table-striped">
+        <thead>
         <tr>
-            <th>Інститут</th>
-            <th>Кафедра, що проводила І етап олімпіади</th>
-            <th>Назва олімпіади</th>
-            <th>Категорія олімпіади</th>
-            <th>ПІБ студентів, які приймали участь у ІІ етапі в базовому ВНЗ</th>
-            <th>Навчальний інстиут</th>
-            <th>ПІБ викладача</th>
-            <th>Кафедра, інститут, де працює викладач</th>
-            <th>Бали</th>
-            <th>Місце</th>
-            <th>Результати участі (відповідно до наказу МОНУ</th>
+            <th st-sort="institute.code">Інститут</th>
+            <th st-sort="kafedra.name">Кафедра, що проводила І етап олімпіади</th>
+            <th st-sort="dysciplina_name">Назва олімпіади</th>
+            <th st-sort="dysciplina.name">Категорія олімпіади</th>
+            <th st-sort="student_name">ПІБ студентів, які приймали участь у ІІ етапі в базовому ВНЗ</th>
+            <th st-sort="student_institute.code">Навчальний інстиут</th>
+            <th st-sort="teacher">ПІБ викладача</th>
+            <th st-sort="teacher_kafedra.name">Кафедра, інститут, де працює викладач</th>
+            <th st-sort="score">Бали</th>
+            <th st-sort="position">Місце</th>
+            <th st-sort="positionMONU">Результати участі (відповідно до наказу МОНУ</th>
         </tr>
-        <tr>
-            <th>
-                <input type="text" id="firstname" class="form-control">
-            </th>
-            <th>
-                <input type="text" id="firstname" class="form-control">
-            </th>
-            <th></th>
-            <th></th>
-            <th>
-                <input type="text" id="firstname" class="form-control">
-            </th>
-            <th></th>
-            <th>
-                <input type="text" id="firstname" class="form-control">
-            </th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th>
-                <input type="text" id="firstname" class="form-control">
-            </th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in rowCollection">
+            <td>{{row.institute.code}}</td>
+            <td>{{row.kafedra.name}}</td>
+            <td>{{row.dysciplina_name}}</td>
+            <td>{{row.dysciplina.name}}</td>
+            <td>{{row.student_name}}</td>
+            <td>{{row.student_institute.code}}</td>
+            <td>{{row.teacher}}</td>
+            <td>{{row.teacher_kafedra.name}}</td>
+            <td>{{row.score}}</td>
+            <td>{{row.position}}</td>
+            <td>{{row.positionMONU}}</td>
         </tr>
-        <tr>
-            <td>ГМІ</td>
-            <td>Педагогіки та психології професійної освіти</td>
-            <td>Педагогіка</td>
-            <td>дисципліна</td>
-            <td>Гриневич Г.В.</td>
-            <td>ГМІ</td>
-            <td>Кокарєва А.М.</td>
-            <td>Педагогіки та психології професійної освіти ГМІ</td>
-            <td>12</td>
-            <td>1</td>
-            <td>10</td>
-        </tr>
-        <tr>
-            <td>ГМІ</td>
-            <td>Педагогіки та психології професійної освіти</td>
-            <td>Педагогіка</td>
-            <td>дисципліна</td>
-            <td>Осауленко С.Л.</td>
-            <td>ГМІ</td>
-            <td>Кокарєва А.М.</td>
-            <td>Педагогіки та психології професійної освіти ГМІ</td>
-            <td>10</td>
-            <td>2</td>
-            <td>9</td>
-        </tr>
-        <tr>
-            <td>ГМІ</td>
-            <td>Педагогіки та психології професійної освіти</td>
-            <td>Педагогіка</td>
-            <td>дисципліна</td>
-            <td>Іванова П.М.</td>
-            <td>ГМІ</td>
-            <td>Кокарєва А.М.</td>
-            <td>Педагогіки та психології професійної освіти ГМІ</td>
-            <td>7</td>
-            <td>3</td>
-            <td>6</td>
-        </tr>
+        </tbody>
     </table>
-
 </div>
 </body>
 </html>

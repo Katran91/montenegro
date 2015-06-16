@@ -20,7 +20,7 @@ public class Institute {
     @Column(name = "NAME")
     private String name;
 
-    @OneToMany(mappedBy = "institute")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "institute", cascade = CascadeType.ALL)
     private Set<Kafedra> kafedras;
 
     public Institute(Integer id, String code, String name) {
