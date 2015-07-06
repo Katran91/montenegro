@@ -1,6 +1,7 @@
 package com.katran.dto;
 
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by Katran on 14.06.2015.
@@ -15,9 +16,7 @@ public class ProtocolDTO {
     private String com_participant;
 
     private InstStatisticDTO instStatistic;
-    private WinnerDTO winner1;
-    private WinnerDTO winner2;
-    private WinnerDTO winner3;
+    private Set<WinnerDTO> winners;
 
     public Date getDate() {
         return date;
@@ -83,27 +82,11 @@ public class ProtocolDTO {
         this.instStatistic = instStatistic;
     }
 
-    public WinnerDTO getWinner1() {
-        return winner1;
+    public Set<WinnerDTO> getWinners() {
+        return winners;
     }
 
-    public void setWinner1(WinnerDTO winner1) {
-        this.winner1 = winner1;
-    }
-
-    public WinnerDTO getWinner2() {
-        return winner2;
-    }
-
-    public void setWinner2(WinnerDTO winner2) {
-        this.winner2 = winner2;
-    }
-
-    public WinnerDTO getWinner3() {
-        return winner3;
-    }
-
-    public void setWinner3(WinnerDTO winner3) {
-        this.winner3 = winner3;
+    public void setWinners(Set<WinnerDTO> winners) {
+        this.winners = winners;
     }
 }

@@ -44,29 +44,29 @@ public class ProtocolController {
         protocol.setKafedra(kafedraService.get(protocolDTO.getKafedra()));
         protocol.setInstitute(instituteService.get(protocolDTO.getInstitut()));
 
-        Winner winner1 = new Winner();
-        Winner winner2 = new Winner();
-        Winner winner3 = new Winner();
+//        Winner winner1 = new Winner();
+//        Winner winner2 = new Winner();
+//        Winner winner3 = new Winner();
+//
+//        winner1.setStudent(protocolDTO.getWinner1().getStudent());
+//        winner1.setInstitute(instituteService.get(protocolDTO.getWinner1().getStudentInstitut()));
+//        winner1.setTeacher(protocolDTO.getWinner1().getTeacher());
+//        winner1.setKafedra(kafedraService.get(protocolDTO.getWinner1().getKafedra()));
+//        winner1.setProtocol(protocol);
+//
+//        winner2.setStudent(protocolDTO.getWinner2().getStudent());
+//        winner2.setInstitute(instituteService.get(protocolDTO.getWinner2().getStudentInstitut()));
+//        winner2.setTeacher(protocolDTO.getWinner2().getTeacher());
+//        winner2.setKafedra(kafedraService.get(protocolDTO.getWinner2().getKafedra()));
+//        winner2.setProtocol(protocol);
+//
+//        winner3.setStudent(protocolDTO.getWinner3().getStudent());
+//        winner3.setInstitute(instituteService.get(protocolDTO.getWinner3().getStudentInstitut()));
+//        winner3.setTeacher(protocolDTO.getWinner3().getTeacher());
+//        winner3.setKafedra(kafedraService.get(protocolDTO.getWinner3().getKafedra()));
+//        winner3.setProtocol(protocol);
 
-        winner1.setStudent(protocolDTO.getWinner1().getStudent());
-        winner1.setInstitute(instituteService.get(protocolDTO.getWinner1().getStudentInstitut()));
-        winner1.setTeacher(protocolDTO.getWinner1().getTeacher());
-        winner1.setKafedra(kafedraService.get(protocolDTO.getWinner1().getKafedra()));
-        winner1.setProtocol(protocol);
-
-        winner2.setStudent(protocolDTO.getWinner2().getStudent());
-        winner2.setInstitute(instituteService.get(protocolDTO.getWinner2().getStudentInstitut()));
-        winner2.setTeacher(protocolDTO.getWinner2().getTeacher());
-        winner2.setKafedra(kafedraService.get(protocolDTO.getWinner2().getKafedra()));
-        winner2.setProtocol(protocol);
-
-        winner3.setStudent(protocolDTO.getWinner3().getStudent());
-        winner3.setInstitute(instituteService.get(protocolDTO.getWinner3().getStudentInstitut()));
-        winner3.setTeacher(protocolDTO.getWinner3().getTeacher());
-        winner3.setKafedra(kafedraService.get(protocolDTO.getWinner3().getKafedra()));
-        winner3.setProtocol(protocol);
-
-        protocol.setWinners(new HashSet<Winner>(Arrays.asList(new Winner[]{winner1, winner2, winner3})));
+        //protocol.setWinners(new HashSet<Winner>(Arrays.asList(new Winner[]{winner1, winner2, winner3})));
 
         protocolService.add(protocol);
 

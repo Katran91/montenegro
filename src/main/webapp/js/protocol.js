@@ -43,6 +43,8 @@
             });
 
         $scope.send = function(protocol){
+            var winners = [];
+
             $http({
                 method: 'POST',
                 url: 'api/protocol/add',
@@ -60,26 +62,7 @@
                         studentCount: protocol.stat_count
                     },
 
-                    winner1: {
-                        student: protocol.student1,
-                        studentInstitut: protocol.s_institution_stat1,
-                        teacher: protocol.teacher1,
-                        kafedra: protocol.kafedra_stat1
-                    },
-
-                    winner2: {
-                        student: protocol.student2,
-                        studentInstitut: protocol.s_institution_stat2,
-                        teacher: protocol.teacher2,
-                        kafedra: protocol.kafedra_stat2
-                    },
-
-                    winner3: {
-                        student: protocol.student3,
-                        studentInstitut: protocol.s_institution_stat3,
-                        teacher: protocol.teacher3,
-                        kafedra: protocol.kafedra_stat3
-                    }
+                    winners
                 }
             }).
                 success(function (data, status, headers, config) {
