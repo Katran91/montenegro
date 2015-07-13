@@ -5,6 +5,8 @@
     var app = angular.module('protocol', []);
 
     app.controller('FormController', ['$http','$scope', function($http, $scope){
+        $scope.com_participants = [{id:1},{id:2}];
+
         var form = this;
         form.instituts = [];
         $http({
@@ -44,6 +46,7 @@
 
         $scope.send = function(protocol){
             var winners = [];
+            var com_participants = [];
 
             $http({
                 method: 'POST',
@@ -55,14 +58,14 @@
                     kafedra: protocol.kafedra,
                     institut: protocol.institut,
                     com_head: protocol.com_head,
-                    com_participant: protocol.com_participant,
 
                     instStatistic: {
                         institut: protocol.institution_stat,
                         studentCount: protocol.stat_count
                     },
 
-                    winners
+                    com_participants: protocol.com_participants,
+                    winners: winners
                 }
             }).
                 success(function (data, status, headers, config) {
@@ -78,6 +81,11 @@
                 });
 
             $scope.protocol = {}
-        }
+        };
+
+        $scope.addComParticipant = function() {
+            var newItemNo = $scope.com_participants.length+1;
+            $scope.com_participants.push({'id':newItemNo});
+        };
     }]);
 })();

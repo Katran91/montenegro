@@ -1,5 +1,6 @@
 package com.katran.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
 
@@ -13,7 +14,7 @@ public class ProtocolDTO {
     private Integer kafedra;
     private Integer institut;
     private String com_head;
-    private String com_participant;
+    private ArrayList<String> com_participants;
 
     private InstStatisticDTO instStatistic;
     private Set<WinnerDTO> winners;
@@ -66,12 +67,12 @@ public class ProtocolDTO {
         this.com_head = com_head;
     }
 
-    public String getCom_participant() {
-        return com_participant;
+    public ArrayList<String> getCom_participants() {
+        return com_participants;
     }
 
-    public void setCom_participant(String com_participant) {
-        this.com_participant = com_participant;
+    public void setCom_participants(ArrayList<String> com_participants) {
+        this.com_participants = com_participants;
     }
 
     public InstStatisticDTO getInstStatistic() {

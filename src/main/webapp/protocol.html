@@ -83,14 +83,14 @@
                 <input type="text" class="form-control" id="com_head" name="com_head" ng-model="protocol.com_head">
             </div>
         </div>
-        <div class="form-group row">
-            <label for="com_participant" class="col-sm-2 control-label">Члени жюрі:</label>
+        <div class="form-group row" data-ng-repeat="com_participant in com_participants">
+            <label for="com_participant" class="col-sm-2 control-label" ng-show="$first">Члени жюрі:</label>
 
-            <div class="col-sm-4" id="participants">
-                <input type="text" class="form-control" id="com_participant" name="com_participant" ng-model="protocol.com_participant">
+            <div class="col-sm-4" ng-class="!$first ? 'col-sm-offset-2' : 'col-sm-offset-0'" id="participants">
+                <input type="text" class="form-control" id="com_participant" name="com_participant" ng-model="com_participant.name">
             </div>
-            <div class="col-sm-2">
-                <button type="button" id="add_participant" class="btn btn-default">
+            <div class="col-sm-2" ng-show="$last">
+                <button type="button" id="add_participant" class="btn btn-default" ng-click="addComParticipant()">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 </button>
             </div>
