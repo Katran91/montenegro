@@ -30,7 +30,7 @@ public class Winner {
     private Kafedra kafedra;
 
     @ManyToOne
-    @JoinColumn(name = "PROTOCOL_ID")
+    @JoinColumn(name = "PROTOCOL_ID", insertable = false, updatable = false, nullable = false)
     private Protocol protocol;
 
     @Column(name = "SCORE")
@@ -41,6 +41,27 @@ public class Winner {
 
     @Column(name = "POSITION_MONU")
     private Integer positionMONU;
+
+    public Winner() {
+    }
+
+    public Winner(String student, Institute institute, String teacher, Kafedra kafedra) {
+        this.student = student;
+        this.institute = institute;
+        this.teacher = teacher;
+        this.kafedra = kafedra;
+    }
+
+    public Winner(String student, Institute institute, String teacher, Kafedra kafedra, Protocol protocol, Integer score, Integer position, Integer positionMONU) {
+        this.student = student;
+        this.institute = institute;
+        this.teacher = teacher;
+        this.kafedra = kafedra;
+        this.protocol = protocol;
+        this.score = score;
+        this.position = position;
+        this.positionMONU = positionMONU;
+    }
 
     public Integer getWinnerId() {
         return winnerId;

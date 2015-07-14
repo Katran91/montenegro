@@ -10,13 +10,12 @@ import java.util.Set;
 public class ProtocolDTO {
     private Date date;
     private Integer category;
-    private String category_name;
+    private String categoryName;
     private Integer kafedra;
     private Integer institut;
-    private String com_head;
-    private ArrayList<String> com_participants;
-
-    private InstStatisticDTO instStatistic;
+    private String comHead;
+    private ArrayList<ComParticipantsDTO> comParticipants;
+    private  ArrayList<InstStatisticDTO> instStatistic;
     private Set<WinnerDTO> winners;
 
     public Date getDate() {
@@ -35,12 +34,12 @@ public class ProtocolDTO {
         this.category = category;
     }
 
-    public String getCategory_name() {
-        return category_name;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCategory_name(String category_name) {
-        this.category_name = category_name;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public Integer getKafedra() {
@@ -59,27 +58,27 @@ public class ProtocolDTO {
         this.institut = institut;
     }
 
-    public String getCom_head() {
-        return com_head;
+    public String getComHead() {
+        return comHead;
     }
 
-    public void setCom_head(String com_head) {
-        this.com_head = com_head;
+    public void setComHead(String comHead) {
+        this.comHead = comHead;
     }
 
-    public ArrayList<String> getCom_participants() {
-        return com_participants;
+    public ArrayList<ComParticipantsDTO> getComParticipants() {
+        return comParticipants;
     }
 
-    public void setCom_participants(ArrayList<String> com_participants) {
-        this.com_participants = com_participants;
+    public void setComParticipants(ArrayList<ComParticipantsDTO> comParticipants) {
+        this.comParticipants = comParticipants;
     }
 
-    public InstStatisticDTO getInstStatistic() {
+    public ArrayList<InstStatisticDTO> getInstStatistic() {
         return instStatistic;
     }
 
-    public void setInstStatistic(InstStatisticDTO instStatistic) {
+    public void setInstStatistic(ArrayList<InstStatisticDTO> instStatistic) {
         this.instStatistic = instStatistic;
     }
 

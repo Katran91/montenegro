@@ -5,8 +5,7 @@
     var app = angular.module('protocol', []);
 
     app.controller('FormController', ['$http','$scope', function($http, $scope){
-        $scope.com_participants = [{id:1},{id:2}];
-
+        initializeEmptyProtocol($scope);
         var form = this;
         form.instituts = [];
         $http({
@@ -45,34 +44,29 @@
             });
 
         $scope.send = function(protocol){
-            var winners = [];
-            var com_participants = [];
-
             $http({
                 method: 'POST',
                 url: 'api/protocol/add',
                 data: {
                     date: protocol.date,
                     category: protocol.category,
-                    category_name: protocol.category_name,
+                    categoryName: protocol.categoryName,
                     kafedra: protocol.kafedra,
                     institut: protocol.institut,
-                    com_head: protocol.com_head,
+                    comHead: protocol.comHead,
 
-                    instStatistic: {
-                        institut: protocol.institution_stat,
-                        studentCount: protocol.stat_count
-                    },
-
-                    com_participants: protocol.com_participants,
-                    winners: winners
+                    comParticipants: protocol.comParticipants,
+                    winners: protocol.winners,
+                    instStatistic: protocol.instStatistic
                 }
             }).
                 success(function (data, status, headers, config) {
+                    initializeEmptyProtocol($scope);
                     $scope.successMsg = data;
                     alert('Протокол було успішно додано');
                 }).
                 error(function (data, status, headers, config) {
+                    initializeEmptyProtocol($scope);;
                     if (status == 400) {
                         $scope.errMessages = data;
                     } else {
@@ -80,12 +74,32 @@
                     }
                 });
 
-            $scope.protocol = {}
+            initializeEmptyProtocol($scope);
         };
 
         $scope.addComParticipant = function() {
-            var newItemNo = $scope.com_participants.length+1;
-            $scope.com_participants.push({'id':newItemNo});
+            var newItemNo = $scope.protocol.comParticipants.length+1;
+            $scope.protocol.comParticipants.push({'id':newItemNo});
         };
+
+        $scope.addWinner = function() {
+            var newItemNo = $scope.protocol.winners.length+1;
+            $scope.protocol.winners.push({'id':newItemNo});
+        };
+
+        $scope.addStatistic = function() {
+            var newItemNo = $scope.protocol.instStatistic.length+1;
+            $scope.protocol.instStatistic.push({'id':newItemNo});
+        };
+
+
     }]);
+
+    function initializeEmptyProtocol($scope){
+        $scope.protocol = {};
+        $scope.protocol.comParticipants = [{id:1}];
+        $scope.protocol.winners = [{id:1}];
+        $scope.protocol.instStatistic = [{id:1}];
+
+    }
 })();

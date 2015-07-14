@@ -35,7 +35,7 @@
             <label for="date" class="col-sm-2 control-label">Дата проведення</label>
 
             <div class="col-sm-2">
-                <div id="date_picker" class="input-group date" data-date="" data-date-format="yyyy-MM-dd" >
+                <div id="date_picker" class="input-group date" data-date="" data-date-format="yyyy-mm-dd" >
                     <input class="form-control" size="16" type="text" value="" id="date" name="date" ng-model="protocol.date" required>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 </div>
@@ -51,11 +51,11 @@
                 </select>
             </div>
         </div>
-        <div class="form-group" ng-class="{ 'has-error':protocolForm.category_name.$invalid }">
-            <label for="category-name" class="col-sm-2 control-label">Назва категорії</label>
+        <div class="form-group" ng-class="{ 'has-error':protocolForm.categoryName.$invalid }">
+            <label for="categoryName" class="col-sm-2 control-label">Назва категорії</label>
 
             <div class="col-sm-6">
-                <input type="text" id="category-name" class="form-control" name="category_name" ng-model="protocol.category_name" required>
+                <input type="text" id="categoryName" class="form-control" name="categoryName" ng-model="protocol.categoryName" required>
             </div>
         </div>
         <div class="form-group" ng-class="{ 'has-error':protocolForm.kafedra.$invalid }">
@@ -77,13 +77,14 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="com_head" class="col-sm-2 control-label">Голова комісії</label>
+            <label for="comHead" class="col-sm-2 control-label">Голова комісії</label>
 
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="com_head" name="com_head" ng-model="protocol.com_head">
+                <input type="text" class="form-control" id="comHead" name="comHead" ng-model="protocol.comHead">
             </div>
         </div>
-        <div class="form-group row" data-ng-repeat="com_participant in com_participants">
+
+        <div class="form-group row" data-ng-repeat="com_participant in protocol.comParticipants">
             <label for="com_participant" class="col-sm-2 control-label" ng-show="$first">Члени жюрі:</label>
 
             <div class="col-sm-4" ng-class="!$first ? 'col-sm-offset-2' : 'col-sm-offset-0'" id="participants">
@@ -95,27 +96,23 @@
                 </button>
             </div>
         </div>
+
         <fieldset>
             <legend>Статистичні дані участі студентів у І етапі олімпіади</legend>
-            <div class="form-group">
+            <div class="form-group row" data-ng-repeat="statistic in protocol.instStatistic">
+                <label class="col-sm-1 control-label">{{statistic.id}}</label>
 
-                <div class="col-sm-9" id="stats">
-                    <div class="row" id="stat_row">
-                        <label class="col-sm-1 control-label">1</label>
-
-                        <div class="col-sm-4">
-                            <select class="form-control" id="institution_stat" name="institution_stat" ng-model="protocol.institution_stat">
-                                <option ng-repeat="institut in form.instituts" value={{institut.id}}>{{institut.name}}</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-4">
-                            <input type="number" class="form-control" id="stat_count" name="stat_count" ng-model="protocol.stat_count"
-                                   placeholder="Кількість студентів">
-                        </div>
-                    </div>
+                <div class="col-sm-4">
+                    <select class="form-control" name="institut" ng-model="statistic.institut">
+                        <option ng-repeat="institut in form.instituts" value={{institut.id}}>{{institut.name}}</option>
+                    </select>
                 </div>
-                <div class="col-sm-2">
-                    <button type="button" id="add_stat" class="btn btn-default">
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" name="studentCount" ng-model="statistic.studentCount"
+                           placeholder="Кількість студентів">
+                </div>
+                <div class="col-sm-1">
+                    <button type="button" class="btn btn-default" ng-show="$last" ng-click="addStatistic()">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                     </button>
                 </div>
@@ -124,36 +121,35 @@
 
         <fieldset>
             <legend>Претенденти на участь у ІІ етапі Олімпіади</legend>
-            <div class="form-group" >
-                <div class="col-sm-11">
-                    <div class="row" id="student_row">
-                        <label class="col-sm-1 control-label">1</label>
+            <div class="form-group row" data-ng-repeat="winner in protocol.winners">
+                <label class="col-sm-1 control-label">{{winner.id}}</label>
 
-                        <div class="col-sm-2" ng-class="{ 'has-error':protocolForm.student.$invalid }">
-                            <input type="text" class="form-control" id="student" name="student" ng-model="protocol.student"
-                                   placeholder="ПІБ студента" required>
-                        </div>
-
-                        <div class="col-sm-3" ng-class="{ 'has-error':protocolForm.student_institute.$invalid }">
-                            <select class="form-control" id="student_institute" name="student_institute" ng-model="protocol.student_institute" required>
-                                <option ng-repeat="institut in form.instituts" value={{institut.id}}>{{institut.name}}</option>
-                            </select>
-                        </div>
-
-                        <div class="col-sm-2"  ng-class="{ 'has-error':protocolForm.teacher.$invalid }">
-                            <input type="text" class="form-control" id="teacher" name="teacher" ng-model="protocol.teacher"
-                                   placeholder="ПІБ викладача" required>
-                        </div>
-
-                        <div class="col-sm-3" ng-class="{ 'has-error':protocolForm.teacher_kafedra.$invalid }">
-                            <select class="form-control" id="teacher_kafedra" name="teacher_kafedra" ng-model="protocol.teacher_kafedra" required>
-                                <option ng-repeat="kafedra in form.kafedras" value={{kafedra.id}}>{{kafedra.name}}</option>
-                            </select>
-                        </div>
-                    </div>
+                <div class="col-sm-2" ng-class="{ 'has-error':protocolForm.student.$invalid }">
+                    <input type="text" class="form-control" name="student" ng-model="winner.student"
+                           placeholder="ПІБ студента" required>
                 </div>
+
+                <div class="col-sm-3" ng-class="{ 'has-error':protocolForm.studentInstitut.$invalid }">
+                    <select class="form-control" name="studentInstitut"
+                            ng-model="winner.studentInstitut" required>
+                        <option ng-repeat="institut in form.instituts" value={{institut.id}}>{{institut.name}}</option>
+                    </select>
+                </div>
+
+                <div class="col-sm-2" ng-class="{ 'has-error':protocolForm.teacher.$invalid }">
+                    <input type="text" class="form-control" name="teacher" ng-model="winner.teacher"
+                           placeholder="ПІБ викладача" required>
+                </div>
+
+                <div class="col-sm-3" ng-class="{ 'has-error':protocolForm.teacherKafedra.$invalid }">
+                    <select class="form-control" name="teacherKafedra"
+                            ng-model="winner.teacherKafedra" required>
+                        <option ng-repeat="kafedra in form.kafedras" value={{kafedra.id}}>{{kafedra.name}}</option>
+                    </select>
+                </div>
+
                 <div class="col-sm-1">
-                    <button type="button" id="add_student" class="btn btn-default">
+                    <button type="button" class="btn btn-default" ng-show="$last" ng-click="addWinner()">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                     </button>
                 </div>
@@ -161,8 +157,7 @@
         </fieldset>
 
         <div class="center-block">
-            <button class="btn btn-primary btn-lg" type="submit" id="Submit" ng-click="send(protocol)"
-                    ng-disabled="protocolForm.$invalid">Додати протокол</button>
+            <button class="btn btn-primary btn-lg" type="submit" id="Submit" ng-click="send(protocol)">Додати протокол</button>
 
             <button class="btn btn-primary btn-lg" type="reset" id="Reset">Обнулити форму</button>
         </div>
