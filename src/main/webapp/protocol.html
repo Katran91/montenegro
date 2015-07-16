@@ -25,6 +25,20 @@
     </div>
 </nav>
 
+<div class="container" ng-controller="ChooseController as chooser">
+    <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="protocolsMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Виберіть протокол...
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="protocolsMenu">
+            <li ng-repeat="protocol in chooser.protocolsList">
+                <button type="button" class="btn btn-default" ng-click="showProtocol({{protocol.id}})">{{protocol.name}}</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
 <div class="container" ng-controller="FormController as form">
     <h3 class="text-center">ПРОТОКОЛ ПРОВЕДЕННЯ</h3>
 
@@ -124,24 +138,24 @@
             <div class="form-group row" data-ng-repeat="winner in protocol.winners">
                 <label class="col-sm-1 control-label">{{winner.id}}</label>
 
-                <div class="col-sm-2" ng-class="{ 'has-error':protocolForm.student.$invalid }">
+                <div class="col-sm-2">
                     <input type="text" class="form-control" name="student" ng-model="winner.student"
                            placeholder="ПІБ студента" required>
                 </div>
 
-                <div class="col-sm-3" ng-class="{ 'has-error':protocolForm.studentInstitut.$invalid }">
+                <div class="col-sm-3">
                     <select class="form-control" name="studentInstitut"
                             ng-model="winner.studentInstitut" required>
                         <option ng-repeat="institut in form.instituts" value={{institut.id}}>{{institut.name}}</option>
                     </select>
                 </div>
 
-                <div class="col-sm-2" ng-class="{ 'has-error':protocolForm.teacher.$invalid }">
+                <div class="col-sm-2">
                     <input type="text" class="form-control" name="teacher" ng-model="winner.teacher"
                            placeholder="ПІБ викладача" required>
                 </div>
 
-                <div class="col-sm-3" ng-class="{ 'has-error':protocolForm.teacherKafedra.$invalid }">
+                <div class="col-sm-3">
                     <select class="form-control" name="teacherKafedra"
                             ng-model="winner.teacherKafedra" required>
                         <option ng-repeat="kafedra in form.kafedras" value={{kafedra.id}}>{{kafedra.name}}</option>
@@ -157,7 +171,8 @@
         </fieldset>
 
         <div class="center-block">
-            <button class="btn btn-primary btn-lg" type="submit" id="Submit" ng-click="send(protocol)">Додати протокол</button>
+            <button class="btn btn-primary btn-lg" type="submit" id="Submit" ng-click="send(protocol)"
+                    ng-disabled="protocolForm.$invalid">Додати протокол</button>
 
             <button class="btn btn-primary btn-lg" type="reset" id="Reset">Обнулити форму</button>
         </div>

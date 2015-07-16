@@ -1,6 +1,8 @@
 package com.katran.controller;
 
 import com.katran.dao.service.*;
+import com.katran.dto.ComParticipantsDTO;
+import com.katran.dto.InstStatisticDTO;
 import com.katran.dto.ProtocolDTO;
 import com.katran.dto.WinnerDTO;
 import com.katran.model.*;
@@ -52,11 +54,31 @@ public class ProtocolController {
                     winner.getTeacher(),kafedraService.get(winner.getTeacherKafedra())));
         }
 
+        Set<IntStatistic> instStatistics = new HashSet<IntStatistic>();
+
+        for(InstStatisticDTO instStatistic : protocolDTO.getInstStatistic()) {
+            instStatistics.add(new IntStatistic(instituteService.get(instStatistic.getInstitut()),instStatistic.getStudentCount()));
+        }
+
+        Set<ComParticipant> comParticipants = new HashSet<ComParticipant>();
+
+        for(ComParticipantsDTO comParticipant: protocolDTO.getComParticipants()) {
+           comParticipants.add(new ComParticipant(comParticipant.getName()));
+        }
+
         protocol.setWinners(winners);
+        protocol.setIntStatistics(instStatistics);
+        protocol.setComParticipants(comParticipants);
 
         protocolService.add(protocol);
 
         return new ResponseEntity<String>("Protocol added", HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/getProtocolsList", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Institute> getProtocolsList(){
+        return instituteService.getAll();
     }
 
     @RequestMapping(value = "/getInstitut", method = RequestMethod.GET)

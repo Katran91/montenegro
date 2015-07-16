@@ -8,6 +8,7 @@ import java.util.Set;
  * Created by Katran on 14.06.2015.
  */
 public class ProtocolDTO {
+    private Integer id;
     private Date date;
     private Integer category;
     private String categoryName;
@@ -17,6 +18,14 @@ public class ProtocolDTO {
     private ArrayList<ComParticipantsDTO> comParticipants;
     private  ArrayList<InstStatisticDTO> instStatistic;
     private Set<WinnerDTO> winners;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Date getDate() {
         return date;

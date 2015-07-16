@@ -20,13 +20,13 @@ public class IntStatistic {
     private Institute institute;
 
     @Column(name = "STUDENT_COUNT")
-    private String studentCount;
+    private Integer studentCount;
 
     @ManyToOne
-    @JoinColumn(name = "PROTOCOL_ID")
+    @JoinColumn(name = "PROTOCOL_ID", insertable = false, updatable = false, nullable = false)
     private Protocol protocol;
 
-    public IntStatistic(Institute institute, String studentCount) {
+    public IntStatistic(Institute institute, Integer studentCount) {
         this.institute = institute;
         this.studentCount = studentCount;
     }
@@ -50,11 +50,11 @@ public class IntStatistic {
         this.institute = institute;
     }
 
-    public String getStudentCount() {
+    public Integer getStudentCount() {
         return studentCount;
     }
 
-    public void setStudentCount(String studentCount) {
+    public void setStudentCount(Integer studentCount) {
         this.studentCount = studentCount;
     }
 

@@ -19,7 +19,7 @@ public class ComParticipant {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "PROTOCOL_ID")
+    @JoinColumn(name = "PROTOCOL_ID", insertable = false, updatable = false, nullable = false)
     private Protocol protocol;
 
     public ComParticipant() {

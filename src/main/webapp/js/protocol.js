@@ -95,6 +95,26 @@
 
     }]);
 
+    app.controller('ChooseController', ['$http','$scope', function($http, $scope){
+        var chooser = this;
+        chooser.protocoslList = [];
+
+        $http({
+            method: 'GET',
+            url: 'api/protocol/getProtocolsList'
+        }).
+            success(function (data, status, headers, config) {
+                chooser.protocoslList = data;
+            }).
+            error(function (data, status, headers, config) {
+                chooser.protocoslList = [{id : null, name:'Немає доступних протоколів'}]
+            });
+
+        $scope.showProtocol = function(protocolId){
+            alert(protocolId);
+        }
+    }]);
+
     function initializeEmptyProtocol($scope){
         $scope.protocol = {};
         $scope.protocol.comParticipants = [{id:1}];
