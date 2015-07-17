@@ -15,8 +15,8 @@ public class ProtocolDTO {
     private Integer kafedra;
     private Integer institut;
     private String comHead;
-    private ArrayList<ComParticipantsDTO> comParticipants;
-    private  ArrayList<InstStatisticDTO> instStatistic;
+    private Set<ComParticipantsDTO> comParticipants;
+    private Set<InstStatisticDTO> instStatistic;
     private Set<WinnerDTO> winners;
 
     public Integer getId() {
@@ -75,19 +75,19 @@ public class ProtocolDTO {
         this.comHead = comHead;
     }
 
-    public ArrayList<ComParticipantsDTO> getComParticipants() {
+    public Set<ComParticipantsDTO> getComParticipants() {
         return comParticipants;
     }
 
-    public void setComParticipants(ArrayList<ComParticipantsDTO> comParticipants) {
+    public void setComParticipants(Set<ComParticipantsDTO> comParticipants) {
         this.comParticipants = comParticipants;
     }
 
-    public ArrayList<InstStatisticDTO> getInstStatistic() {
+    public Set<InstStatisticDTO> getInstStatistic() {
         return instStatistic;
     }
 
-    public void setInstStatistic(ArrayList<InstStatisticDTO> instStatistic) {
+    public void setInstStatistic(Set<InstStatisticDTO> instStatistic) {
         this.instStatistic = instStatistic;
     }
 

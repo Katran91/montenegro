@@ -4,8 +4,34 @@
 (function() {
     var app = angular.module('protocol', []);
 
-    app.controller('FormController', ['$http','$scope', function($http, $scope){
-        initializeEmptyProtocol($scope);
+    app.factory('protocolService', function(){
+        var protocolService = {};
+
+        protocolService.protocol = {};
+
+        protocolService.initializeEmptyProtocol = function () {
+            protocolService.protocol.comParticipants = [{id:1}];
+            protocolService.protocol.winners = [{id:1}];
+            protocolService.protocol.instStatistic = [{id:1}];
+        };
+
+        protocolService.setProtocol = function (protocol) {
+            angular.copy(protocol, protocolService.protocol);
+        };
+
+        protocolService.getProtocolName = function(protocol) {
+            return protocol.institut + "/" + protocol.categoryName + "/" + protocol.date;
+        };
+
+        return protocolService;
+    });
+
+
+    app.controller('FormController', ['$http','$scope', 'protocolService', function($http, $scope, protocolService){
+        $scope.protocol = protocolService.protocol;
+
+        protocolService.initializeEmptyProtocol();
+
         var form = this;
         form.instituts = [];
         $http({
@@ -61,12 +87,12 @@
                 }
             }).
                 success(function (data, status, headers, config) {
-                    initializeEmptyProtocol($scope);
+                    protocolService.initializeEmptyProtocol();
                     $scope.successMsg = data;
                     alert('Протокол було успішно додано');
                 }).
                 error(function (data, status, headers, config) {
-                    initializeEmptyProtocol($scope);;
+                    protocolService.initializeEmptyProtocol();
                     if (status == 400) {
                         $scope.errMessages = data;
                     } else {
@@ -74,7 +100,7 @@
                     }
                 });
 
-            initializeEmptyProtocol($scope);
+            protocolService.initializeEmptyProtocol();
         };
 
         $scope.addComParticipant = function() {
@@ -95,31 +121,26 @@
 
     }]);
 
-    app.controller('ChooseController', ['$http','$scope', function($http, $scope){
+    app.controller('ChooseController', ['$http','$scope', 'protocolService', function($http, $scope, protocolService){
+        this.protocolService = protocolService;
         var chooser = this;
-        chooser.protocoslList = [];
+        chooser.protocolsList = [{id:1, name : "First"}, {id:2, name : "Second"}];
 
         $http({
             method: 'GET',
             url: 'api/protocol/getProtocolsList'
         }).
             success(function (data, status, headers, config) {
-                chooser.protocoslList = data;
+                chooser.protocolsList = data;
             }).
             error(function (data, status, headers, config) {
-                chooser.protocoslList = [{id : null, name:'Немає доступних протоколів'}]
+                chooser.protocolsList = [{id : null, name:'Немає доступних протоколів'}]
             });
 
-        $scope.showProtocol = function(protocolId){
-            alert(protocolId);
-        }
+        $scope.showProtocol = function(protocol){
+            alert(protocolService.getProtocolName(protocol));
+
+            protocolService.setProtocol(protocol);
+        };
     }]);
-
-    function initializeEmptyProtocol($scope){
-        $scope.protocol = {};
-        $scope.protocol.comParticipants = [{id:1}];
-        $scope.protocol.winners = [{id:1}];
-        $scope.protocol.instStatistic = [{id:1}];
-
-    }
 })();

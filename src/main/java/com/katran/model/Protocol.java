@@ -37,15 +37,15 @@ public class Protocol {
     @JoinColumn(name = "INSTITUTE_ID")
     private Institute institute;
 
-    @OneToMany(cascade = {CascadeType.ALL})
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinColumn(name = "PROTOCOL_ID")
     private Set<Winner> winners = new HashSet<Winner>();
 
-    @OneToMany(cascade = {CascadeType.ALL})
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinColumn(name = "PROTOCOL_ID")
     private Set<IntStatistic> intStatistics = new HashSet<IntStatistic>();
 
-    @OneToMany(cascade = {CascadeType.ALL})
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinColumn(name = "PROTOCOL_ID")
     private Set<ComParticipant> comParticipants = new HashSet<ComParticipant>();
 

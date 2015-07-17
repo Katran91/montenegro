@@ -77,8 +77,53 @@ public class ProtocolController {
 
     @RequestMapping(value = "/getProtocolsList", method = RequestMethod.GET)
     @ResponseBody
-    public List<Institute> getProtocolsList(){
-        return instituteService.getAll();
+    public List<ProtocolDTO> getProtocolsList(){
+        List<ProtocolDTO> protocolDTOs = new ArrayList<ProtocolDTO>();
+
+        for(Protocol protocol:protocolService.getAll()){
+            ProtocolDTO protocolDTO = new ProtocolDTO();
+
+            protocolDTO.setDate(protocol.getDate());
+            protocolDTO.setCategory(protocol.getDysciplina().getId());
+            protocolDTO.setCategoryName(protocol.getDysciplina_name());
+
+            protocolDTO.setKafedra(protocol.getKafedra().getId());
+            protocolDTO.setInstitut(protocol.getInstitute().getId());
+
+            Set<WinnerDTO> winners = new HashSet<WinnerDTO>();
+
+            int i = 1;
+            for(Winner winner : protocol.getWinners()){
+                winners.add(new WinnerDTO(i,
+                        winner.getStudent(), winner.getInstitute().getInstituteId(),
+                        winner.getTeacher(), winner.getKafedra().getId()));
+                i++;
+            }
+
+            Set<InstStatisticDTO> instStatisticsDTO = new HashSet<InstStatisticDTO>();
+
+            i = 1;
+            for(IntStatistic instStatistic : protocol.getIntStatistics()) {
+                instStatisticsDTO.add(new InstStatisticDTO(i,instStatistic.getInstitute().getId(),instStatistic.getStudentCount()));
+                i++;
+            }
+
+            Set<ComParticipantsDTO> comParticipantDTO = new HashSet<ComParticipantsDTO>();
+
+            i = 1;
+            for(ComParticipant comParticipant: protocol.getComParticipants()) {
+                comParticipantDTO.add(new ComParticipantsDTO(i,comParticipant.getName()));
+                i++;
+            }
+
+            protocolDTO.setWinners(winners);
+            protocolDTO.setInstStatistic(instStatisticsDTO);
+            protocolDTO.setComParticipants(comParticipantDTO);
+
+            protocolDTOs.add(protocolDTO);
+        }
+
+        return protocolDTOs;
     }
 
     @RequestMapping(value = "/getInstitut", method = RequestMethod.GET)

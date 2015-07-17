@@ -33,7 +33,8 @@
         </button>
         <ul class="dropdown-menu" aria-labelledby="protocolsMenu">
             <li ng-repeat="protocol in chooser.protocolsList">
-                <button type="button" class="btn btn-default" ng-click="showProtocol({{protocol.id}})">{{protocol.name}}</button>
+                <button type="button" class="btn btn-default" ng-click="showProtocol(protocol)">
+                    {{chooser.protocolService.getProtocolName(protocol)}}</button>
             </li>
         </ul>
     </div>
