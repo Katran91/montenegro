@@ -58,6 +58,7 @@
             <th st-sort="score">Бали</th>
             <th st-sort="position">Місце</th>
             <th st-sort="positionMONU">Результати участі (відповідно до наказу МОНУ</th>
+            <th></th>
         </tr>
         <tr>
             <th>
@@ -81,6 +82,7 @@
             <th>
                 <input st-search="positionMONU" placeholder="результат МОНУ" class="input-sm form-control" type="search"/>
             </th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -94,9 +96,10 @@
             <td>{{row.student_institute.code}}</td>
             <td>{{row.teacher}}</td>
             <td>{{row.teacher_kafedra.name}}</td>
-            <td>{{row.score}}</td>
-            <td>{{row.position}}</td>
-            <td>{{row.positionMONU}}</td>
+            <td><div contentEditable="true" ng-model="row.score">{{row.score}}</div></td>
+            <td><div contentEditable="true" ng-model="row.position">{{row.position}}</div></td>
+            <td><div contentEditable="true" ng-model="row.positionMONU">{{row.positionMONU}}</div></td>
+            <td><button ng-click="save(row)">Save</button></td>
         </tr>
         </tbody>
     </table>

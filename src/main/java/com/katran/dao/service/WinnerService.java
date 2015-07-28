@@ -1,6 +1,5 @@
 package com.katran.dao.service;
 
-import com.katran.model.Teacher;
 import com.katran.model.Winner;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
@@ -42,6 +41,12 @@ public class WinnerService {
         Session session = sessionFactory.getCurrentSession();
 
         session.save(winner);
+    }
+
+    public void update(Winner winner){
+        Session session = sessionFactory.getCurrentSession();
+
+        session.update(winner);
     }
 
     public void delete(Integer id){

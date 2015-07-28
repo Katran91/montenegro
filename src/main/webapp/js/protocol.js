@@ -8,6 +8,7 @@
         var protocolService = {};
 
         protocolService.protocol = {};
+        protocolService.institutesList = [];
 
         protocolService.initializeEmptyProtocol = function () {
             protocolService.protocol.comParticipants = [{id:1}];
@@ -20,7 +21,13 @@
         };
 
         protocolService.getProtocolName = function(protocol) {
-            return protocol.institut + "/" + protocol.categoryName + "/" + protocol.date;
+            for(i = 0; i <  protocolService.institutesList.length; i++){
+                if(protocolService.institutesList[i].id == protocol.institute){
+                    return protocolService.institutesList[i].code + "/" + protocol.categoryName + "/" + protocol.date;
+                }
+            }
+
+            return protocol.institute + "/" + protocol.categoryName + "/" + protocol.date;
         };
 
         return protocolService;
@@ -33,16 +40,16 @@
         protocolService.initializeEmptyProtocol();
 
         var form = this;
-        form.instituts = [];
+        form.institutes = [];
         $http({
             method: 'GET',
-            url: 'api/protocol/getInstitut'
+            url: 'api/protocol/getInstitute'
         }).
             success(function (data, status, headers, config) {
-                form.instituts = data;
+                form.institutes = data;
             }).
             error(function (data, status, headers, config) {
-                form.instituts = [{id : null, name:'Немає доступних інститутів'}]
+                form.institutes = [{id : null, name:'Немає доступних інститутів'}]
             });
 
         form.kafedras = [];
@@ -78,7 +85,7 @@
                     category: protocol.category,
                     categoryName: protocol.categoryName,
                     kafedra: protocol.kafedra,
-                    institut: protocol.institut,
+                    institute: protocol.institute,
                     comHead: protocol.comHead,
 
                     comParticipants: protocol.comParticipants,
@@ -121,10 +128,20 @@
 
     }]);
 
-    app.controller('ChooseController', ['$http','$scope', 'protocolService', function($http, $scope, protocolService){
+    app.controller('ChooseController', ['$http','$scope', '$filter', 'protocolService', function($http, $scope, $filter, protocolService){
         this.protocolService = protocolService;
         var chooser = this;
-        chooser.protocolsList = [{id:1, name : "First"}, {id:2, name : "Second"}];
+
+        $http({
+            method: 'GET',
+            url: 'api/protocol/getInstitute'
+        }).
+            success(function (data, status, headers, config) {
+                chooser.protocolService.institutesList = data;
+            }).
+            error(function (data, status, headers, config) {
+                chooser.institutesList = [{id : null, name:'Немає доступних інститутів'}]
+            });
 
         $http({
             method: 'GET',
@@ -132,10 +149,15 @@
         }).
             success(function (data, status, headers, config) {
                 chooser.protocolsList = data;
+                for(i = 0; i < chooser.protocolsList.length; i++){
+                    chooser.protocolsList[i].date =  $filter('date')(chooser.protocolsList[i].date, "yyyy-MM-dd");
+                }
             }).
             error(function (data, status, headers, config) {
                 chooser.protocolsList = [{id : null, name:'Немає доступних протоколів'}]
             });
+
+
 
         $scope.showProtocol = function(protocol){
             alert(protocolService.getProtocolName(protocol));

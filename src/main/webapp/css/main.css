@@ -1,5 +1,5 @@
 body {
-    padding-top: 50px;
+    padding-top: 60px;
 }
 
 .gridStyle {
@@ -14,4 +14,16 @@ body {
 
 .st-sort-descent:before{
     content: '\25BC';
+}
+
+div[contentEditable] {
+    cursor: pointer;
+    background-color: #c4e3f3 ;
+    padding: .2em;
+}
+div[contentEditable]:focus {
+    cursor: pointer;
+    background-color: #d6e9c6;
+    border: 1px solid red;
+    padding: .2em;
 }

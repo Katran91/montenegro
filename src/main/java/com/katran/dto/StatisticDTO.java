@@ -127,6 +127,9 @@ public class StatisticDTO {
         this.protocolId = protocolId;
     }
 
+    public StatisticDTO() {
+    }
+
     public StatisticDTO(Integer winnerId, Integer protocolId, Institute institute, Kafedra kafedra, String dysciplina_name, Dysciplina dysciplina, String student_name, Institute student_institute, String teacher, Kafedra teacher_kafedra, Integer score, Integer position, Integer positionMONU) {
         this.winnerId = winnerId;
         this.protocolId = protocolId;

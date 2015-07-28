@@ -5,7 +5,7 @@ package com.katran.dto;
  */
 public class InstStatisticDTO {
     private Integer id;
-    private Integer institut;
+    private Integer institute;
     private Integer studentCount;
 
     public InstStatisticDTO() {
@@ -13,7 +13,7 @@ public class InstStatisticDTO {
 
     public InstStatisticDTO(Integer id, Integer institut, Integer studentCount) {
         this.id = id;
-        this.institut = institut;
+        this.institute = institut;
         this.studentCount = studentCount;
     }
 
@@ -25,12 +25,12 @@ public class InstStatisticDTO {
         this.id = id;
     }
 
-    public Integer getInstitut() {
-        return institut;
+    public Integer getInstitute() {
+        return institute;
     }
 
-    public void setInstitut(Integer institut) {
-        this.institut = institut;
+    public void setInstitute(Integer institute) {
+        this.institute = institute;
     }
 
     public Integer getStudentCount() {

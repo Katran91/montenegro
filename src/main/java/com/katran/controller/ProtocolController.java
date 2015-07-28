@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -45,7 +47,7 @@ public class ProtocolController {
         protocol.setDysciplina_name(protocolDTO.getCategoryName());
 
         protocol.setKafedra(kafedraService.get(protocolDTO.getKafedra()));
-        protocol.setInstitute(instituteService.get(protocolDTO.getInstitut()));
+        protocol.setInstitute(instituteService.get(protocolDTO.getInstitute()));
 
         Set<Winner> winners = new HashSet<Winner>();
 
@@ -57,7 +59,7 @@ public class ProtocolController {
         Set<IntStatistic> instStatistics = new HashSet<IntStatistic>();
 
         for(InstStatisticDTO instStatistic : protocolDTO.getInstStatistic()) {
-            instStatistics.add(new IntStatistic(instituteService.get(instStatistic.getInstitut()),instStatistic.getStudentCount()));
+            instStatistics.add(new IntStatistic(instituteService.get(instStatistic.getInstitute()),instStatistic.getStudentCount()));
         }
 
         Set<ComParticipant> comParticipants = new HashSet<ComParticipant>();
@@ -78,6 +80,8 @@ public class ProtocolController {
     @RequestMapping(value = "/getProtocolsList", method = RequestMethod.GET)
     @ResponseBody
     public List<ProtocolDTO> getProtocolsList(){
+        Object a = new Integer[10];
+
         List<ProtocolDTO> protocolDTOs = new ArrayList<ProtocolDTO>();
 
         for(Protocol protocol:protocolService.getAll()){
@@ -88,7 +92,7 @@ public class ProtocolController {
             protocolDTO.setCategoryName(protocol.getDysciplina_name());
 
             protocolDTO.setKafedra(protocol.getKafedra().getId());
-            protocolDTO.setInstitut(protocol.getInstitute().getId());
+            protocolDTO.setInstitute(protocol.getInstitute().getId());
 
             Set<WinnerDTO> winners = new HashSet<WinnerDTO>();
 
@@ -126,7 +130,7 @@ public class ProtocolController {
         return protocolDTOs;
     }
 
-    @RequestMapping(value = "/getInstitut", method = RequestMethod.GET)
+    @RequestMapping(value = "/getInstitute", method = RequestMethod.GET)
     @ResponseBody
     public List<Institute> getIntitutList(){
         return instituteService.getAll();
