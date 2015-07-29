@@ -115,9 +115,19 @@
             $scope.protocol.comParticipants.push({'id':newItemNo});
         };
 
+        $scope.removeComParticipant = function(com_participant) {
+            var index = $scope.protocol.comParticipants.indexOf(com_participant)
+            $scope.protocol.comParticipants.splice(index,1);
+        };
+
         $scope.addWinner = function() {
             var newItemNo = $scope.protocol.winners.length+1;
             $scope.protocol.winners.push({'id':newItemNo});
+        };
+
+        $scope.removeWinner = function(winner) {
+            var index = $scope.protocol.winners.indexOf(winner)
+            $scope.protocol.winners.splice(index,1);
         };
 
         $scope.addStatistic = function() {
@@ -125,7 +135,10 @@
             $scope.protocol.instStatistic.push({'id':newItemNo});
         };
 
-
+        $scope.removeStatistic = function(statistic) {
+            var index = $scope.protocol.instStatistic.indexOf(statistic)
+            $scope.protocol.instStatistic.splice(index,1);
+        };
     }]);
 
     app.controller('ChooseController', ['$http','$scope', '$filter', 'protocolService', function($http, $scope, $filter, protocolService){
@@ -160,8 +173,6 @@
 
 
         $scope.showProtocol = function(protocol){
-            alert(protocolService.getProtocolName(protocol));
-
             protocolService.setProtocol(protocol);
         };
     }]);

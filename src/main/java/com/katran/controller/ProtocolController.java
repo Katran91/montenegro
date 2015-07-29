@@ -51,9 +51,13 @@ public class ProtocolController {
 
         Set<Winner> winners = new HashSet<Winner>();
 
-        for(WinnerDTO winner : protocolDTO.getWinners()){
-            winners.add(new Winner(winner.getStudent(),instituteService.get(winner.getStudentInstitut()),
-                    winner.getTeacher(),kafedraService.get(winner.getTeacherKafedra())));
+        for(WinnerDTO winnerDTO : protocolDTO.getWinners()){
+            Winner winner = new Winner(winnerDTO.getStudent(),instituteService.get(winnerDTO.getStudentInstitut()),
+                    winnerDTO.getTeacher(),kafedraService.get(winnerDTO.getTeacherKafedra()));
+            winner.setPosition(0);
+            winner.setPositionMONU(0);
+            winner.setScore(0);
+            winners.add(winner);
         }
 
         Set<IntStatistic> instStatistics = new HashSet<IntStatistic>();

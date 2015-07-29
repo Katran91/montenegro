@@ -105,7 +105,12 @@
             <div class="col-sm-4" ng-class="!$first ? 'col-sm-offset-2' : 'col-sm-offset-0'" id="participants">
                 <input type="text" class="form-control" id="com_participant" name="com_participant" ng-model="com_participant.name">
             </div>
-            <div class="col-sm-2" ng-show="$last">
+            <div class="col-sm-1" ng-show="!$first">
+                <button type="button" id="remove_participant" class="btn btn-default" ng-click="removeComParticipant(com_participant)">
+                    <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="col-sm-1" ng-show="$last">
                 <button type="button" id="add_participant" class="btn btn-default" ng-click="addComParticipant()">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 </button>
@@ -127,6 +132,11 @@
                            placeholder="Кількість студентів">
                 </div>
                 <div class="col-sm-1">
+                    <button type="button" class="btn btn-default" ng-show="!$first" ng-click="removeStatistic(statistic)">
+                        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="col-sm-1">
                     <button type="button" class="btn btn-default" ng-show="$last" ng-click="addStatistic()">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                     </button>
@@ -144,7 +154,7 @@
                            placeholder="ПІБ студента" required>
                 </div>
 
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <select class="form-control" name="studentInstitut"  ng-model="winner.studentInstitut" required>
                         <option ng-repeat="institute in form.institutes" value={{institute.id}}>{{institute.name}}</option>
                     </select>
@@ -162,6 +172,11 @@
                     </select>
                 </div>
 
+                <div class="col-sm-1">
+                    <button type="button" class="btn btn-default" ng-show="!$first" ng-click="removeWinner(winner)">
+                        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                    </button>
+                </div>
                 <div class="col-sm-1">
                     <button type="button" class="btn btn-default" ng-show="$last" ng-click="addWinner()">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
